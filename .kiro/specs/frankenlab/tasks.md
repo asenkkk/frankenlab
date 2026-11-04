@@ -1,0 +1,21 @@
+# FrankenLab — Tasks
+
+- [x] Scaffold repo: `index.html`, `styles.css`, `app.js`, README, MIT LICENSE
+- [x] Tab navigation with ARIA tab semantics
+- [x] JWT Inspector: decode header/payload, timing claims, expiry status
+- [x] JWT Inspector: HS256 verify vs user secret (WebCrypto)
+- [x] JWT Inspector: common-secrets wordlist test + real signed sample token
+- [x] API Probe: fetch, status/timing, exposed headers, body preview
+- [x] API Probe: 5-header security grading with score
+- [x] API Probe: honest CORS failure explanation
+- [x] EVM Checker: address validation, eth_call × 4 (name/symbol/decimals/totalSupply)
+- [x] EVM Checker: ABI decode (string + bytes32 fallback, BigInt amounts)
+- [x] Toolbox: Base64 / Hex / URL encode+decode, SHA-256, copy & swap
+- [x] Spooky dark UI: accessible contrast, focus states, aria-live results
+- [x] Node sanity tests: JWT decode + wordlist crack, ABI encode/decode, toolbox round-trips
+- [x] Local HTTP serve + curl smoke test
+- [ ] Live BSC check from the page itself (needs a real browser with internet; logic verified in Node + curl JSON-RPC)
+- [ ] Push to a public GitHub repo + enable GitHub Pages
+- [ ] Record demo video (< 3 min, YouTube public)
+- [ ] Finalise README "How Kiro was used" from the actual Kiro session (currently an honest DRAFT)
+- [ ] Submit on Devpost before 4 Dec 2026, 2:00 PM PT
