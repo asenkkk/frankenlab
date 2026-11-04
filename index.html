@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FrankenLab — an API Security Chimera. Four security tools stitched into one spooky, client-side web app for Kiroween 2026 (Frankenstein category).">
+<title>FrankenLab — API Security Chimera</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <p class="eyebrow" aria-hidden="true">🎃 Kiroween 2026 · Frankenstein Category</p>
+    <h1>⚗️ FrankenLab</h1>
+    <p class="tagline"><strong>API Security Chimera</strong> — four incompatible creatures stitched into one body:
+      a JWT inspector (web tokens), an API header probe (HTTP), an EVM token checker (blockchain),
+      and an encoder/hash toolbox (cryptography). Everything runs <strong>100% in your browser</strong>.</p>
+    <p class="privacy-note">🔒 Privacy: nothing you paste here is sent to our server — there is no server.
+      The only network calls are the ones <em>you</em> trigger: the URL you probe, and read-only calls to the public BSC RPC.</p>
+  </div>
+</header>
+
+<nav class="wrap" aria-label="Tools">
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-btn-jwt" aria-controls="panel-jwt" aria-selected="true" data-tab="jwt">🧪 JWT Inspector</button>
+    <button role="tab" id="tab-btn-probe" aria-controls="panel-probe" aria-selected="false" data-tab="probe">🛰️ API Probe</button>
+    <button role="tab" id="tab-btn-evm" aria-controls="panel-evm" aria-selected="false" data-tab="evm">⛓️ EVM Token Checker</button>
+    <button role="tab" id="tab-btn-tools" aria-controls="panel-tools" aria-selected="false" data-tab="tools">🧰 Encoder / Hash</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ 1. JWT INSPECTOR ============ -->
+  <section id="panel-jwt" role="tabpanel" aria-labelledby="tab-btn-jwt" class="panel">
+    <h2>JWT Inspector</h2>
+    <p>Decode a JSON Web Token, check its expiry, and test whether its HS256 signature was made with a
+       weak/common secret. The token is decoded <strong>locally</strong> and never leaves this page.</p>
+    <label for="jwt-input">Token</label>
+    <textarea id="jwt-input" rows="4" spellcheck="false" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.…"></textarea>
+    <div class="row">
+      <button id="jwt-sample" type="button" class="ghost">Load sample token</button>
+      <button id="jwt-crack" type="button" class="ghost">Test common-secrets wordlist</button>
+    </div>
+    <label for="jwt-secret">Test a specific secret (HS256)</label>
+    <div class="row">
+      <input id="jwt-secret" type="text" autocomplete="off" placeholder="e.g. your-256-bit-secret">
+      <button id="jwt-verify" type="button">Verify signature</button>
+    </div>
+    <div id="jwt-result" class="result" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ 2. API PROBE ============ -->
+  <section id="panel-probe" role="tabpanel" aria-labelledby="tab-btn-probe" class="panel" hidden>
+    <h2>API Probe</h2>
+    <p>Fetch a URL from your browser and grade its security headers.</p>
+    <p class="warn">⚠️ Honest limitation: browsers enforce <abbr title="Cross-Origin Resource Sharing">CORS</abbr>.
+      If the target does not send CORS headers, the fetch will fail or expose only a few headers —
+      that is a browser restriction, not proof the site is down. Sites that allow CORS (many public APIs) work fully.</p>
+    <label for="probe-url">URL</label>
+    <div class="row">
+      <input id="probe-url" type="url" value="https://api.github.com/" autocomplete="off">
+      <button id="probe-go" type="button">Probe</button>
+    </div>
+    <div id="probe-result" class="result" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ 3. EVM TOKEN CHECKER ============ -->
+  <section id="panel-evm" role="tabpanel" aria-labelledby="tab-btn-evm" class="panel" hidden>
+    <h2>EVM Token Checker <span class="badge">BNB Smart Chain</span></h2>
+    <p>Read a BEP-20 token's <code>name()</code>, <code>symbol()</code>, <code>decimals()</code> and
+       <code>totalSupply()</code> directly from chain via read-only <code>eth_call</code>.
+       No wallet, no signing, no keys — ever.</p>
+    <label for="evm-address">Contract address</label>
+    <div class="row">
+      <input id="evm-address" type="text" spellcheck="false" autocomplete="off"
+             placeholder="0x…" value="0x55d398326f99059fF775485246999027B3197955">
+      <button id="evm-go" type="button">Check token</button>
+    </div>
+    <p class="hint">Pre-filled example: USDT on BSC. RPC endpoint: <code>https://bsc-dataseed.binance.org</code></p>
+    <div id="evm-result" class="result" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ 4. ENCODER / HASH TOOLBOX ============ -->
+  <section id="panel-tools" role="tabpanel" aria-labelledby="tab-btn-tools" class="panel" hidden>
+    <h2>Encoder / Hash Toolbox</h2>
+    <label for="tools-input">Input</label>
+    <textarea id="tools-input" rows="4" spellcheck="false" placeholder="Type or paste anything…">FrankenLab</textarea>
+    <div class="btn-grid" role="group" aria-label="Operations">
+      <button type="button" data-op="b64enc">Base64 → Encode</button>
+      <button type="button" data-op="b64dec">Base64 → Decode</button>
+      <button type="button" data-op="hexenc">Hex → Encode</button>
+      <button type="button" data-op="hexdec">Hex → Decode</button>
+      <button type="button" data-op="urlenc">URL → Encode</button>
+      <button type="button" data-op="urldec">URL → Decode</button>
+      <button type="button" data-op="sha256">SHA-256 (hash)</button>
+    </div>
+    <label for="tools-output">Output</label>
+    <textarea id="tools-output" rows="4" readonly spellcheck="false"></textarea>
+    <div class="row">
+      <button id="tools-copy" type="button" class="ghost">Copy output</button>
+      <button id="tools-swap" type="button" class="ghost">Use output as input</button>
+    </div>
+    <div id="tools-msg" class="result" aria-live="polite"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer wrap">
+  <p>FrankenLab v1 · Built for <strong>Kiroween 2026</strong> (Frankenstein category) · MIT License · No backend, no tracking, no cookies.</p>
+  <p>Stitched together with vanilla HTML/CSS/JS. Host it anywhere static — including GitHub Pages.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
