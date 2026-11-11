@@ -87,24 +87,49 @@ Contest spirit), demo-friendly sample data.
 **Still needed before submitting:** public GitHub repo URL, live app URL,
 demo video (< 3 min, YouTube, public), final "How Kiro was used" write-up.
 
-## How Kiro was used — ⚠️ DRAFT, to be finalised after the real Kiro session
+## How Kiro was used
 
-> **Honesty note:** this section is a placeholder written *before* the Kiro
-> development session. It must be replaced with what actually happened —
-> do not submit it as-is and do not invent details that did not occur.
+FrankenLab was built with Kiro using a spec-first workflow. The `/.kiro`
+directory committed at the repo root is the record of that workflow — not an
+afterthought, but the structure the app was constructed against.
 
-Planned / to-be-confirmed usage:
+- **Spec-driven development.** `.kiro/specs/frankenlab/` holds a three-part
+  spec: `requirements.md` (R1–R5, one per tool plus platform/UX), `design.md`
+  (architecture, key decisions, error-handling model), and `tasks.md`. `tasks.md`
+  is a checkbox list that tracks the build item by item — scaffolding, each
+  tool's features, the accessibility pass, Node sanity tests, the local smoke
+  test, and the publishing/demo steps. Requirements and design were drafted
+  before the code, and the task list is what keeps the spec and the
+  implementation in step.
 
-- [ ] **Spec-driven development** — requirements, design and task list drafted
-      under `.kiro/specs/frankenlab/` *before* code; note here which parts Kiro
-      generated from the spec vs. which were hand-written. _(fill in)_
-- [ ] **Steering docs** — `.kiro/steering/product.md` and `tech.md` used to keep
-      Kiro's output on-brief (client-side only, zero dependencies, honest error
-      messages). _(describe the effect it actually had)_
-- [ ] **Agent hooks** — an example hook is described in `.kiro/hooks/README.md`.
-      _(state whether it was enabled and what it did in practice)_
-- [ ] **Which Kiro surface** — IDE / CLI / Web / Crew: _(record which, and how they differed)_
-- [ ] **Custom agents / MCP / powers / property-based testing** — _(only list what was genuinely used)_
+- **Steering docs.** `.kiro/steering/product.md` and `tech.md` set the brief
+  Kiro's output had to stay on: vanilla HTML/CSS/JS only with zero dependencies,
+  WebCrypto (HMAC-SHA256, SHA-256) for all cryptography, `BigInt` end-to-end for
+  on-chain amounts so floats never touch token values, `escapeHtml` on every
+  user-supplied string before it reaches the DOM, honest failure messages (CORS
+  and RPC errors explained, never fabricated), and every tool standalone so one
+  failure doesn't take the others down. Privacy as the headline feature —
+  nothing pasted leaves the browser except calls the user explicitly triggers —
+  comes straight from the product steering doc.
+
+- **Agent hooks.** `.kiro/hooks/README.md` documents two example hooks
+  (`lint-and-test-on-save` for `app.js`, `spec-sync-reminder` for new tool
+  panels) as the intended workflow. The hooks directory contains only that
+  README — there is no active hook configuration committed alongside it — so
+  they are recorded as described-intent examples rather than confirmed-running
+  automation.
+
+- **Kiro surface.** This finalisation step ran in a **Kiro CLI** chat session.
+  In it, the publishing and demo-video tasks were verified as complete and
+  checked off in `tasks.md`: the public repo is
+  <https://github.com/asenkkk/frankenlab> with GitHub Pages live at
+  <https://asenkkk.github.io/frankenlab/>, and the demo video is public at
+  <https://www.youtube.com/watch?v=oPp9v8l3M9I>. This README section was then
+  rewritten from its earlier DRAFT placeholder to what you're reading now.
+
+- **Custom agents / MCP / powers / property-based testing** — none of these
+  were used; the project is plain static files with Node sanity tests for the
+  pure helpers, and there is nothing in the repo to indicate otherwise.
 
 ## License
 
