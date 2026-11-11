@@ -18,4 +18,4 @@
 - [x] Push to a public GitHub repo + enable GitHub Pages
 - [x] Record demo video (< 3 min, YouTube public)
 - [x] Finalise README "How Kiro was used" from the actual Kiro session
-- [ ] Submit on Devpost before 4 Dec 2026, 2:00 PM PT
+- [x] Submit on Devpost before 4 Dec 2026, 2:00 PM PT
