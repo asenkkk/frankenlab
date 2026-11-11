@@ -15,7 +15,7 @@
 - [x] Node sanity tests: JWT decode + wordlist crack, ABI encode/decode, toolbox round-trips
 - [x] Local HTTP serve + curl smoke test
 - [ ] Live BSC check from the page itself (needs a real browser with internet; logic verified in Node + curl JSON-RPC)
-- [ ] Push to a public GitHub repo + enable GitHub Pages
-- [ ] Record demo video (< 3 min, YouTube public)
-- [ ] Finalise README "How Kiro was used" from the actual Kiro session (currently an honest DRAFT)
+- [x] Push to a public GitHub repo + enable GitHub Pages
+- [x] Record demo video (< 3 min, YouTube public)
+- [x] Finalise README "How Kiro was used" from the actual Kiro session
 - [ ] Submit on Devpost before 4 Dec 2026, 2:00 PM PT
